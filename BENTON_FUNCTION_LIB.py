@@ -1,6 +1,5 @@
 import win32com.client
 import pythoncom
-import time
 
 pythoncom.CoInitialize()
 bzo = win32com.client.Dispatch("BZWhll.WhllObj")
@@ -13,64 +12,53 @@ bzo = win32com.client.Dispatch("BZWhll.WhllObj")
 time_array_15_min = ("7:00 AM", "7:15 AM", "7:30 AM", "7:45 AM", "8:00 AM", "8:15 AM", "8:30 AM", "8:45 AM", "9:00 AM", "9:15 AM", "9:30 AM", "9:45 AM", "10:00 AM", "10:15 AM", "10:30 AM", "10:45 AM", "11:00 AM", "11:15 AM", "11:30 AM", "11:45 AM", "12:00 PM", "12:15 PM", "12:30 PM", "12:45 PM", "1:00 PM", "1:15 PM", "1:30 PM", "1:45 PM", "2:00 PM", "2:15 PM", "2:30 PM", "2:45 PM", "3:00 PM", "3:15 PM", "3:30 PM", "3:45 PM", "4:00 PM", "4:15 PM", "4:30 PM", "4:45 PM", "5:00 PM", "5:15 PM", "5:30 PM", "5:45 PM", "6:00 PM")
 time_array_30_min = ("7:00 AM", "7:30 AM", "8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM", "6:00 PM")
 
-
 #-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 #-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~     FUNCTIONS     ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 #-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 
-def EMSendKey(press_keys):
+def Connect():
+    bzo.Connect('')
+
+def SendKey(press_keys):
     bzo.SendKey(str(press_keys))
 
-def EMSetCursor(row_val, column_val):
+def SetCursor(row_val, column_val):
     bzo.SetCursor(row_val, column_val)
 
-def EMReadScreen(buffer_str, length_val, row_val, column_val):
+def ReadScreen(buffer_str, length_val, row_val, column_val):
     screen_text = bzo.ReadScreen(buffer_str, length_val, row_val, column_val)
     return screen_text[1]
 
 def delete_text_line():
-    EMSendKey("@D")
+    SendKey("@D")
 
 def pf1():
-    EMSendKey("@1")
+    SendKey("@1")
 
 def pf2():
-    EMSendKey("@2")
+    SendKey("@2")
 
 def pf3():
-    EMSendKey("@3")
+    SendKey("@3")
 
 def pf4():
-    EMSendKey("@4")
+    SendKey("@4")
 
 def pf5():
-    EMSendKey("@5")
+    SendKey("@5")
 
 def pf6():
-    EMSendKey("@6")
+    SendKey("@6")
 
 def pf7():
-    EMSendKey("@7")
+    SendKey("@7")
 
 def pf8():
-    EMSendKey("@8")
+    SendKey("@8")
 
 def pf9():
-    EMSendKey("@9")
+    SendKey("@9")
 
 def transmit():
-    EMSendKey("@E")
-
-#-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-#-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-#-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
-
-
-bzo.Connect('')
-
-EMSetCursor(20, 38)
-EMSendKey("309189")
-#top_line = EMReadScreen("top_line", 30, 3, 3)
-#transmit()
-#EMSendKey(top_line)
+    SendKey("@E")
 
